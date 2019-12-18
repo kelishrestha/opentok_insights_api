@@ -14,11 +14,10 @@ const query = gql`
     project(projectId: ${apiKey}) {
       projectData(
         start: ${moment().subtract(30, 'days')},
-        groupBy: BROWSER,
-        browser: [CHROME, FIREFOX, IE]
+        groupBy: SDK_TYPE,
       ) {
         resources {
-          browser,
+          sdkType,
           errors {
             connect {
               failures
@@ -36,7 +35,7 @@ const query = gql`
   }
 `;
 
-class FailuresByBrowser extends Component {
+class FailuresBySdkType extends Component {
   render() {
     return (
       <Query query={query}>
@@ -72,4 +71,4 @@ class FailuresByBrowser extends Component {
   }
 }
 
-export default FailuresByBrowser;
+export default FailuresBySdkType;

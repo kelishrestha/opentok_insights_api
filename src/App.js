@@ -5,7 +5,9 @@ import UsageByDay from './charts/UsageByDay';
 import UsageBySession from './charts/UsageBySession';
 import SdkDistribution from './charts/SdkDistribution';
 import FailuresByBrowser from './charts/FailuresByBrowser';
+import FailuresBySdkType from './charts/FailuresBySdkType';
 import BitrateByCountry from './charts/BitrateByCountry';
+import LatencyByCountry from './charts/LatencyByCountry';
 import VideoStats from './charts/VideoStats';
 import './css/App.css';
 
@@ -22,15 +24,23 @@ class App extends Component {
         <ChartContainer titleIcon="bar" title="Failures by Browser">
           <FailuresByBrowser />
         </ChartContainer>
-        <ChartContainer titleIcon="bar" title="Bitrate by Country">
+        <ChartContainer titleIcon="bar" title="Failures by SDK">
+          <FailuresBySdkType />
+        </ChartContainer>
+
+        <h2>&nbsp;&nbsp;Subscribers</h2>
+        <ChartContainer titleIcon="bar" title="Bitrate by Country" userType="subscriber">
           <BitrateByCountry />
         </ChartContainer>
-        <ChartContainer titleIcon="area" title="Publisher Video Bitrate">
+        <ChartContainer titleIcon="bar" title="Latency by Country">
+          <LatencyByCountry />
+        </ChartContainer>
+        {/* <ChartContainer titleIcon="area" title="Publisher Video Bitrate">
           <VideoStats />
         </ChartContainer>
         <TableContainer titleIcon="table" title="Publisher and Subscriber minutes by Session">
           <UsageBySession />
-        </TableContainer>
+        </TableContainer> */}
       </div>
     );
   }

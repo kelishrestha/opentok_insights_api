@@ -20,7 +20,7 @@ const query = gql`
           country,
           quality {
             subscriber {
-              videoBitrateKbpsAvg
+              latencyMsAvg
             }
           }
         }
@@ -29,7 +29,7 @@ const query = gql`
   }
 `;
 
-class BitrateByCountry extends Component {
+class LatencyByCountry extends Component {
   render() {
     return (
       <Query query={query}>
@@ -41,9 +41,9 @@ class BitrateByCountry extends Component {
             <HorizontalBar data={{
               labels: resources.map(item => item.country),
               datasets: [{
-                label: 'Avg. Bitrate',
+                label: 'Avg. latency',
                 backgroundColor: '#36A2EB',
-                data: resources.map(item => get(item, 'quality.subscriber.videoBitrateKbpsAvg', 0)),
+                data: resources.map(item => get(item, 'quality.subscriber.latencyMsAvg', 0)),
               }],
             }} />
           );
@@ -53,4 +53,4 @@ class BitrateByCountry extends Component {
   }
 }
 
-export default BitrateByCountry;
+export default LatencyByCountry;

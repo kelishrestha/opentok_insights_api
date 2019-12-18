@@ -13,15 +13,18 @@ const query = gql`
   {
     project(projectId: ${apiKey}) {
       projectData(
-        start: ${moment().subtract(10, 'days')},
+        start: ${moment().subtract(30, 'days')},
         interval: DAILY
-      ) { 
+      ) {
         resources {
           intervalStart,
           intervalEnd,
           usage {
             streamedPublishedMinutes,
-            streamedSubscribedMinutes
+            streamedSubscribedMinutes,
+            individualArchiveMinutes,
+            sdBroadcastComposedMinutes,
+            sipUserMinutes
           }
         }
       }
@@ -50,6 +53,21 @@ class UsageByDay extends Component {
                   label: 'Streamed Subscribed Minutes',
                   backgroundColor: 'rgba(75,75,192,0.4)',
                   data: resources.map(item => get(item, 'usage.streamedSubscribedMinutes', 0)),
+                },
+                {
+                  label: 'Individual Archive Minutes',
+                  backgroundColor: '#99004C',
+                  data: resources.map(item => get(item, 'usage.individualArchiveMinutes', 0)),
+                },
+                {
+                  label: 'Broadcast Composed Minutes',
+                  backgroundColor: '#CC6600',
+                  data: resources.map(item => get(item, 'usage.sdBroadcastComposedMinutes', 0)),
+                },
+                {
+                  label: 'SIP User Minutes',
+                  backgroundColor: '#3333FF',
+                  data: resources.map(item => get(item, 'usage.sipUserMinutes', 0)),
                 },
               ],
             }} />

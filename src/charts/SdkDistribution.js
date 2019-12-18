@@ -13,7 +13,7 @@ const query = gql`
   {
     project(projectId: ${apiKey}) {
       projectData(
-        start: ${moment().subtract(10, 'days')},
+        start: ${moment().subtract(30, 'days')},
         groupBy: SDK_TYPE,
         sdkType: [JS, ANDROID, IOS]
       ) {

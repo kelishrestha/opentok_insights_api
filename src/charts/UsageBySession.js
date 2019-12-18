@@ -24,7 +24,7 @@ const sessionSummariesQuery = endCursor => gql`
     project(projectId: ${apiKey}) {
       sessionData {
         sessionSummaries(
-          start: ${moment().subtract(10, 'days')}
+          start: ${moment().subtract(30, 'days')}
           endCursor: "${endCursor}"
         ) {
           totalCount
@@ -90,7 +90,7 @@ class UsageBySession extends Component {
       sessionsInfo: this.state.sessionsInfo.concat(sessionsInfo),
     });
   }
-  
+
   async componentDidMount() {
     await this.getSessionsInfo();
     this.setState({ loading: false });

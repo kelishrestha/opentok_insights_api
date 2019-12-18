@@ -13,7 +13,7 @@ const sessionSummariesQuery = gql`
   {
     project(projectId: ${apiKey}) {
       sessionData {
-        sessionSummaries(start: ${moment().subtract(10, 'days')}) {
+        sessionSummaries(start: ${moment().subtract(30, 'days')}) {
           totalCount
           resources {
             sessionId
@@ -50,7 +50,7 @@ const sessionQuery = sessionIds => gql`
             }
           }
         }
-      }  
+      }
     }
    }
   }
