@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ChartContainer from './components/ChartContainer';
 import TableContainer from './components/TableContainer';
 import UsageByDay from './charts/UsageByDay';
+import UsageByLocation from './charts/UsageByLocation';
+import UsageByBrowser from './charts/UsageByBrowser';
 import UsageBySession from './charts/UsageBySession';
 import SdkDistribution from './charts/SdkDistribution';
 import FailuresByBrowser from './charts/FailuresByBrowser';
@@ -17,6 +19,12 @@ class App extends Component {
       <div className="App">
         <ChartContainer titleIcon="area" title="Usage by Day">
           <UsageByDay />
+        </ChartContainer>
+        <ChartContainer titleIcon="geo" title="Usage by Location">
+          <UsageByLocation />
+        </ChartContainer>
+        <ChartContainer titleIcon="geo" title="Usage by Browser">
+          <UsageByBrowser />
         </ChartContainer>
         <ChartContainer titleIcon="pie" title="SDK Distribution">
           <SdkDistribution />
