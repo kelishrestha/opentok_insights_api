@@ -13,8 +13,8 @@ const query = gql`
   {
     project(projectId: ${apiKey}) {
       projectData(
-        start: ${moment().subtract(30, 'days')},
-        interval: DAILY
+        start: ${moment().subtract(500, 'days')},
+        interval: WEEKLY
       ) {
         resources {
           intervalStart,

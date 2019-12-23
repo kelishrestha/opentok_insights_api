@@ -19,7 +19,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ChartContainer titleIcon="area" title="Usage by Day">
+        <ChartContainer titleIcon="area" title="Usage by Time">
           <UsageByDay />
         </ChartContainer>
         <ChartContainer titleIcon="geo" title="Usage by Location">
