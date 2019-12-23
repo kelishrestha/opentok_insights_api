@@ -19,10 +19,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ChartContainer titleIcon="area" title="Usage by Time">
+        <ChartContainer titleIcon="area" title="Usage by Time" fullWidth="card-full-width">
           <UsageByDay />
         </ChartContainer>
-        <ChartContainer titleIcon="geo" title="Usage by Location">
+        <ChartContainer titleIcon="geo" title="Usage by Location" fullWidth="card-full-width">
           <UsageByLocation />
         </ChartContainer>
         <ChartContainer titleIcon="geo" title="Usage by Browser">

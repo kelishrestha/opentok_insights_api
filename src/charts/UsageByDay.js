@@ -24,7 +24,11 @@ const query = gql`
             streamedSubscribedMinutes,
             individualArchiveMinutes,
             sdBroadcastComposedMinutes,
-            sipUserMinutes
+            sipUserMinutes,
+            hdArchiveComposedMinutes,
+            hdBroadcastComposedMinutes,
+            hlsMinutes,
+            sdArchiveComposedMinutes,
           }
         }
       }
@@ -68,6 +72,26 @@ class UsageByDay extends Component {
                   label: 'SIP User Minutes',
                   backgroundColor: '#3333FF',
                   data: resources.map(item => get(item, 'usage.sipUserMinutes', 0)),
+                },
+                {
+                  label: 'HD Archive Composed Minutes',
+                  backgroundColor: '#FE33FF',
+                  data: resources.map(item => get(item, 'usage.hdArchiveComposedMinutes', 0)),
+                },
+                {
+                  label: 'HD Broadcast Composed Minutes',
+                  backgroundColor: '#d23423',
+                  data: resources.map(item => get(item, 'usage.hdBroadcastComposedMinutes', 0)),
+                },
+                {
+                  label: 'HLS Minutes',
+                  backgroundColor: '#B234FF',
+                  data: resources.map(item => get(item, 'usage.hlsMinutes', 0)),
+                },
+                {
+                  label: 'SD Archive Composed Minutes',
+                  backgroundColor: '#531498',
+                  data: resources.map(item => get(item, 'usage.sdArchiveComposedMinutes', 0)),
                 },
               ],
             }} />
