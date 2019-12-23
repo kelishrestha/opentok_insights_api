@@ -16,10 +16,11 @@ const query = gql`
       projectData(
         start: ${moment().subtract(30, 'days')},
         interval: DAILY,
-        groupBy: BROWSER
+        groupBy: BROWSER_VERSION
+        browser: [CHROME]
       ) {
         resources {
-          browser
+          browserVersion
           usage {
             streamedSubscribedMinutes
           }
@@ -31,14 +32,16 @@ const query = gql`
 
 class UsageByBrowser extends Component {
   getSubscribedData(resources){
-    let distinctBrowsers = resources.filter(x => x.browser != null);
+    let distinctBrowsers = resources.filter(x => x.browserVersion != null);
     var browserData = {};
+    var browserName = 'CHROME ';
+
     distinctBrowsers.forEach(item => {
-      browserData[item.browser] = browserData[item.browser] || 0;
-      browserData[item.browser] = round((browserData[item.browser] + item.usage.streamedSubscribedMinutes), 2);
+      browserData[item.browserVersion] = browserData[item.browserVersion] || 0;
+      browserData[item.browserVersion] = round((browserData[item.browserVersion] + item.usage.streamedSubscribedMinutes), 2);
     });
     // Compiling null data
-    var otherCountriesData = resources.filter(x => x.browser == null);;
+    var otherCountriesData = resources.filter(x => x.browserVersion == null);;
     var otherData = otherCountriesData.map(item => get(item, 'usage.streamedSubscribedMinutes', 0));
     let numOr0 = n => isNaN(n) ? 0 : n;
     var otherValues = otherData.reduce((a, b) => numOr0(a) + numOr0(b), 0)
@@ -46,8 +49,15 @@ class UsageByBrowser extends Component {
       browserData['Others'] = otherValues
     }
 
+    // Append browser name
+    var browserKeys = Object.keys(browserData);
+    var labels = [];
+    browserKeys.forEach(item => {
+      var name = browserName.concat(item);
+      labels.push(name)
+    })
     return {
-      labels: Object.keys(browserData),
+      labels: labels,
       browserData: Object.values(browserData)
     }
   }

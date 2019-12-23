@@ -4,6 +4,7 @@ import TableContainer from './components/TableContainer';
 import UsageByDay from './charts/UsageByDay';
 import UsageByLocation from './charts/UsageByLocation';
 import UsageByBrowser from './charts/UsageByBrowser';
+import UsageByBrowserVersion from './charts/UsageByBrowserVersion';
 import UsageBySession from './charts/UsageBySession';
 import SdkDistribution from './charts/SdkDistribution';
 import FailuresByBrowser from './charts/FailuresByBrowser';
@@ -25,6 +26,9 @@ class App extends Component {
         </ChartContainer>
         <ChartContainer titleIcon="geo" title="Usage by Browser">
           <UsageByBrowser />
+        </ChartContainer>
+        <ChartContainer titleIcon="geo" title="Usage by Browser Version">
+          <UsageByBrowserVersion />
         </ChartContainer>
         <ChartContainer titleIcon="pie" title="SDK Distribution">
           <SdkDistribution />
