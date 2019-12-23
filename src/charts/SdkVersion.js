@@ -15,8 +15,7 @@ const query = gql`
     project(projectId: ${apiKey}) {
       projectData(
         start: ${moment().subtract(30, 'days')},
-        groupBy: SDK_TYPE,
-        sdkType: [JS, ANDROID, IOS, WINDOWS, OTHER]
+        groupBy: SDK_VERSION
       ) {
         resources {
           sdkType,
@@ -31,14 +30,14 @@ const query = gql`
 
 class SdkDistribution extends Component {
   getSubscribedData(resources){
-    let distinctdata = resources.filter(x => x.sdkType != null);
+    let distinctData = resources.filter(x => x.sdkVersion != null);
     var subscribedData = {};
-    distinctdata.forEach(item => {
-      subscribedData[item.sdkType] = subscribedData[item.sdkType] || 0;
-      subscribedData[item.sdkType] = round((subscribedData[item.sdkType] + item.usage.streamedSubscribedMinutes), 2);
+    distinctData.forEach(item => {
+      subscribedData[item.sdkVersion] = subscribedData[item.sdkVersion] || 0;
+      subscribedData[item.sdkVersion] = round((subscribedData[item.sdkVersion] + item.usage.streamedSubscribedMinutes), 2);
     });
     // Compiling null data
-    var otherSubscribedData = resources.filter(x => x.sdkType == null);;
+    var otherSubscribedData = resources.filter(x => x.sdkVersion == null);;
     var otherData = otherSubscribedData.map(item => get(item, 'usage.streamedSubscribedMinutes', 0));
     let numOr0 = n => isNaN(n) ? 0 : n;
     var otherValues = otherData.reduce((a, b) => numOr0(a) + numOr0(b), 0)
@@ -64,12 +63,9 @@ class SdkDistribution extends Component {
             <Pie data={{
               labels: labels,
               datasets: [{
+                label: 'SDK Versions',
+                backgroundColor: '#36A2EB',
                 data: subscribedData,
-                backgroundColor: [
-                  '#FF6384',
-                  '#36A2EB',
-                  '#FFCE56'
-                ],
               }],
             }} />
           );

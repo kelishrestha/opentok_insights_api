@@ -7,6 +7,7 @@ import UsageByBrowser from './charts/UsageByBrowser';
 import UsageByBrowserVersion from './charts/UsageByBrowserVersion';
 import UsageBySession from './charts/UsageBySession';
 import SdkDistribution from './charts/SdkDistribution';
+import SdkVersion from './charts/SdkVersion';
 import FailuresByBrowser from './charts/FailuresByBrowser';
 import FailuresBySdkType from './charts/FailuresBySdkType';
 import BitrateByCountry from './charts/BitrateByCountry';
@@ -32,6 +33,9 @@ class App extends Component {
         </ChartContainer>
         <ChartContainer titleIcon="pie" title="SDK Distribution">
           <SdkDistribution />
+        </ChartContainer>
+        <ChartContainer titleIcon="pie" title="SDK Versions">
+          <SdkVersion />
         </ChartContainer>
         <ChartContainer titleIcon="bar" title="Failures by Browser">
           <FailuresByBrowser />
