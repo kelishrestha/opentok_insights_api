@@ -15,7 +15,7 @@ const query = gql`
       projectData(
         start: ${moment().subtract(30, 'days')},
         groupBy: BROWSER,
-        browser: [CHROME, FIREFOX, IE]
+        browser: [CHROME, FIREFOX, IE, EDGE, SAFARI]
       ) {
         resources {
           browser,

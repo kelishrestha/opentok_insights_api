@@ -15,6 +15,7 @@ const query = gql`
       projectData(
         start: ${moment().subtract(30, 'days')},
         groupBy: SDK_TYPE,
+        sdkType: [JS, ANDROID, IOS, WINDOWS, OTHER]
       ) {
         resources {
           sdkType,
